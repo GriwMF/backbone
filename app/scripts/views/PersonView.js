@@ -9,7 +9,7 @@ BackboneApp.Views = BackboneApp.Views || {};
 
         template: JST['app/scripts/templates/PersonView.ejs'],
 
-        tagName: 'div',
+        tagName: 'tr',
 
         id: '',
 
@@ -23,6 +23,8 @@ BackboneApp.Views = BackboneApp.Views || {};
 
         render: function () {
             this.$el.html(this.template(this.model.toJSON()));
+
+            return this;
         }
 
     });

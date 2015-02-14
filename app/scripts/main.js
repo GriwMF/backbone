@@ -15,4 +15,13 @@ window.BackboneApp = {
 $(document).ready(function () {
     'use strict';
     BackboneApp.init();
+
+    window.person1 = new BackboneApp.Models.Person({name: 'Nick', age: 42});
+
+    var pView = new BackboneApp.Views.PersonView({model: person1});
+
+    $('#peopleList').append(pView.render().el);
+
+    // console.log(pView.render().el);
+
 });

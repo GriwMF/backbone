@@ -7,12 +7,12 @@ BackboneApp.Models = BackboneApp.Models || {};
 
     BackboneApp.Models.Person = Backbone.Model.extend({
 
-        url: '',
-
         initialize: function() {
         },
 
         defaults: {
+            name: 'Adam',
+            surname: 'Smith'
         },
 
         validate: function(attrs, options) {
