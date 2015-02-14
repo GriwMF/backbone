@@ -23,6 +23,7 @@ BackboneApp.Views = BackboneApp.Views || {};
 
             this.renderTemplate();
             this.$tbody = this.$el.find('tbody');
+            this.render();
         },
 
         renderTemplate: function(){

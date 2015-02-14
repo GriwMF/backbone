@@ -6,23 +6,20 @@ BackboneApp.Views = BackboneApp.Views || {};
     'use strict';
 
     BackboneApp.Views.AppView = Backbone.View.extend({
-
-        template: JST['app/scripts/templates/AppView.ejs'],
-
-        tagName: 'div',
-
-        id: '',
-
-        className: '',
-
-        events: {},
+        el: '#container',
 
         initialize: function () {
-            this.listenTo(this.model, 'change', this.render);
+            // this.render();
+
+            BackboneApp.vent.on('page:index', this.renderIndexPage, this);
+
+            this.peopleCollection = new BackboneApp.Collections.People([{name: 'Nick', age: 42}, {name: 'Adam', age: 42}]);
         },
 
-        render: function () {
-            this.$el.html(this.template(this.model.toJSON()));
+        renderIndexPage: function(){
+
+            this.peopleView = this.peopleView ? this.peopleView : (new BackboneApp.Views.PeopleView({collection: this.peopleCollection}));
+            this.$el.html(this.peopleView.el);
         }
 
     });
