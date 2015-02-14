@@ -9,20 +9,35 @@ BackboneApp.Views = BackboneApp.Views || {};
 
         template: JST['app/scripts/templates/PeopleView.ejs'],
 
-        tagName: 'div',
+        tagName: 'table',
 
         id: '',
 
-        className: '',
+        className: 'table',
 
         events: {},
 
         initialize: function () {
-            this.listenTo(this.model, 'change', this.render);
+            // this.listenTo(this.collection, 'remove', this.render);
+            this.listenTo(this.collection, 'add', this.addOne);
+
+            this.renderTempate();
+            this.$tbody = this.$el.find('tbody');
+        },
+
+        renderTempate: function(){
+            this.$el.html(this.template());
         },
 
         render: function () {
-            this.$el.html(this.template(this.model.toJSON()));
+            this.$tbody.empty();
+            this.collection.each(this.addOne, this)
+            return this;
+        },
+
+        addOne: function(person){
+            var pView = new BackboneApp.Views.PersonView({model:person});
+            this.$tbody.append(pView.render().el);
         }
 
     });

@@ -16,11 +16,11 @@ $(document).ready(function () {
     'use strict';
     BackboneApp.init();
 
-    window.person1 = new BackboneApp.Models.Person({name: 'Nick', age: 42});
+    window.people = new BackboneApp.Collections.People([{name: 'Nick', age: 42}, {name: 'Adam', age: 42}]);
 
-    var pView = new BackboneApp.Views.PersonView({model: person1});
+    var cView = new BackboneApp.Views.PeopleView({collection: people});
 
-    $('#peopleList').append(pView.render().el);
+    $('.container').append(cView.render().el);
 
     // console.log(pView.render().el);
 

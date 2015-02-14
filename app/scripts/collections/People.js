@@ -7,7 +7,7 @@ BackboneApp.Collections = BackboneApp.Collections || {};
 
     BackboneApp.Collections.People = Backbone.Collection.extend({
 
-        model: BackboneApp.Models.People
+        model: BackboneApp.Models.Person
 
     });
 
