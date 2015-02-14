@@ -21,12 +21,14 @@ BackboneApp.Views = BackboneApp.Views || {};
             // this.listenTo(this.collection, 'remove', this.render);
             this.listenTo(this.collection, 'add', this.addOne);
 
-            this.renderTempate();
+            this.renderTemplate();
             this.$tbody = this.$el.find('tbody');
         },
 
-        renderTempate: function(){
+        renderTemplate: function(){
             this.$el.html(this.template());
+            var nView = new BackboneApp.Views.NewPersonView({collection: this.collection});
+            this.$el.find('tfoot').html(nView.el);
         },
 
         render: function () {
