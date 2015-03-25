@@ -21,34 +21,38 @@ BackboneApp.Views = BackboneApp.Views || {};
         },
 
         initialize: function () {
+            this.person = new BackboneApp.Models.Person();
+            BackboneApp.vent.on("editPerson", this.editModel, this);
             this.render();
         },
-
         render: function () {
             this.$el.html(this.template());
             this.$inputs = this.$el.find('input');
             return this;
         },
         saveModel: function(){
-            var person = this.getInputsValues();
-
-            if (this.collection.add(person)){
+            this.getInputsValues();
+            if (this.collection.add(this.person)){
                 this.clearForm();
             }
             return false;
         },
         clearForm: function(){
             this.$inputs.val('');
+            this.person = new BackboneApp.Models.Person();
             return false;
         },
         getInputsValues: function(){
-            var values = {};
+            var person = this.person;
             $.each(this.$inputs, function(){
-                values[this.getAttribute('name')] = this.value;
-            })
-            return values;
+                person.set(this.getAttribute('name'), this.value);
+            });
+        },
+        editModel: function(model){
+            this.person = model;
+            $.each(this.$inputs, function(){
+                this.value = model.get(this.getAttribute('name'));
+            });
         }
-
     });
-
 })();

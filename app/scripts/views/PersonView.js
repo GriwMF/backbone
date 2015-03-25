@@ -16,7 +16,9 @@ BackboneApp.Views = BackboneApp.Views || {};
         className: '',
 
         events: {
-            'click .deleteBtn': 'deletePerson'
+            'click .deleteBtn': 'deletePerson',
+            'click .editBtn': 'editPerson',
+            'click' : 'showPerson'
         },
 
         initialize: function () {
@@ -36,6 +38,17 @@ BackboneApp.Views = BackboneApp.Views || {};
 
         deletePerson: function(){
             this.model.destroy();
+            return false;
+        },
+
+        editPerson: function(){
+            BackboneApp.vent.trigger("editPerson", this.model);
+            return false;
+        },
+
+        showPerson: function(){
+            BackboneApp.router.navigate('person/' + this.model.get('id'), {trigger:true});
+            return false;
         }
 
     });

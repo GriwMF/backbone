@@ -10,10 +10,11 @@ window.BackboneApp = {
     init: function () {
         'use strict';
         console.log('Hello from Backbone!');
+        this.id = 0;
         _.extend(BackboneApp.vent, Backbone.Events);
         var appView = new BackboneApp.Views.AppView;
 
-        var router = new BackboneApp.Routers.Main;
+        this.router = new BackboneApp.Routers.Main;
         Backbone.history.start();
     }
 };

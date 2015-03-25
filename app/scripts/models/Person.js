@@ -8,6 +8,8 @@ BackboneApp.Models = BackboneApp.Models || {};
     BackboneApp.Models.Person = Backbone.Model.extend({
 
         initialize: function() {
+            this.set('id', BackboneApp.id);
+            BackboneApp.id++;
         },
 
         defaults: {

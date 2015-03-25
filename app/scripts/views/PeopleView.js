@@ -34,7 +34,7 @@ BackboneApp.Views = BackboneApp.Views || {};
 
         render: function () {
             this.$tbody.empty();
-            this.collection.each(this.addOne, this)
+            this.collection.each(this.addOne, this);
             return this;
         },
 

@@ -7,10 +7,14 @@ BackboneApp.Routers = BackboneApp.Routers || {};
 
     BackboneApp.Routers.Main = Backbone.Router.extend({
       routes: {
-        '': 'index'
+        '': 'index',
+        'person/:id': 'show'
       },
       index: function(){
         BackboneApp.vent.trigger('page:index');
+      },
+      show: function(id){
+        BackboneApp.vent.trigger('page:show', id);
       }
     });
 

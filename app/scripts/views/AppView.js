@@ -12,14 +12,20 @@ BackboneApp.Views = BackboneApp.Views || {};
             // this.render();
 
             BackboneApp.vent.on('page:index', this.renderIndexPage, this);
-
+            BackboneApp.vent.on('page:show', this.renderShowPage, this);
             this.peopleCollection = new BackboneApp.Collections.People([{name: 'Nick', age: 42}, {name: 'Adam', age: 42}]);
         },
 
         renderIndexPage: function(){
 
-            this.peopleView = this.peopleView ? this.peopleView : (new BackboneApp.Views.PeopleView({collection: this.peopleCollection}));
-            this.$el.html(this.peopleView.el);
+            var peopleView = new BackboneApp.Views.PeopleView({collection: this.peopleCollection});
+
+            this.$el.html(peopleView.el);
+        },
+
+        renderShowPage: function(id){
+            var detailedView = new BackboneApp.Views.PersonDetailedView({model: this.peopleCollection.get(id)});
+            this.$el.html(detailedView.el);
         }
 
     });
